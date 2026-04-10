@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html><script>
+  const PASSWORD = "YourSecretFamilyPassword123"; // Change this!
+  let authenticated = sessionStorage.getItem("authenticated");
+
+  while (authenticated !== "true") {
+    let entry = prompt("Please enter the access password:");
+    if (entry === PASSWORD) {
+      sessionStorage.setItem("authenticated", "true");
+      authenticated = "true";
+    } else {
+      alert("Incorrect password.");
+    }
+  }
+</script>
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
