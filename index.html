@@ -1,22 +1,4 @@
 <!DOCTYPE html>
-<script>
-  const PASSWORD = "FamiliaMorales"; 
-  
-  function checkAuth() {
-    let authenticated = sessionStorage.getItem("authenticated");
-    if (authenticated !== "true") {
-      let entry = prompt("Por favor, ingresa la contraseña de acceso:");
-      if (entry === PASSWORD) {
-        sessionStorage.setItem("authenticated", "true");
-      } else {
-        alert("Contraseña incorrecta.");
-        checkAuth(); // Reintenta si falla
-      }
-    }
-  }
-  
-  checkAuth();
-</script>
 <html lang="es">
 <head>
   <meta charset="UTF-8"/>
@@ -25,6 +7,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
+  <script>
+    const PASSWORD = "FamiliaMorales"; 
+    
+    function checkAuth() {
+      let authenticated = sessionStorage.getItem("authenticated");
+      if (authenticated !== "true") {
+        let entry = prompt("Por favor, ingresa la contraseña de acceso:");
+        if (entry === PASSWORD) {
+          sessionStorage.setItem("authenticated", "true");
+        } else {
+          alert("Contraseña incorrecta.");
+          checkAuth();
+        }
+      }
+    }
+    checkAuth();
+  </script>
 </head>
 <body>
 
@@ -52,7 +51,6 @@
 </div>
 
 <div id="app" class="hidden">
-
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo">
@@ -62,4 +60,37 @@
       <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
     </div>
 
-    <nav class
+    <nav class="sidebar-nav" id="owner-nav">
+      <button class="nav-item active" data-tab="dashboard" onclick="showTab('dashboard')">Panel</button>
+      <button class="nav-item" data-tab="inventory" onclick="showTab('inventory')">Inventario</button>
+      <button class="nav-item" data-tab="sales" onclick="showTab('sales')">Ventas</button>
+      <button class="nav-item" data-tab="orders" onclick="showTab('orders')">Pedidos</button>
+      <button class="nav-item" data-tab="chat" onclick="showTab('chat')">Chat <span id="unread-count" class="unread-pill" style="display:none"></span></button>
+    </nav>
+
+    <nav class="sidebar-nav hidden" id="supplier-nav">
+      <button class="nav-item active" data-tab="supplier-stock" onclick="showTab('supplier-stock')">Alertas</button>
+      <button class="nav-item" data-tab="supplier-orders" onclick="showTab('supplier-orders')">Pedidos</button>
+      <button class="nav-item" data-tab="chat" onclick="showTab('chat')">Chat <span id="unread-count-s" class="unread-pill" style="display:none"></span></button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="export-btn" id="export-btn" onclick="exportXLSX()">Exportar Excel</button>
+      <button class="signout-btn" onclick="logout()">Cerrar Sesión</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <h1 id="page-title">Panel Principal</h1>
+      <div id="user-chip" class="user-chip">Cargando...</div>
+    </header>
+    <div id="page-content" class="page-content"></div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
