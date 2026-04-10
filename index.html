@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <script>
-  const PASSWORD = "FamiliaMorales"; 
-function checkAuth() {
-  let authenticated = sessionStorage.getItem("authenticated");
-  if (authenticated !== "true") {
-    let entry = prompt("Por favor, ingresa la contraseña de acceso:");
-    if (entry === PASSWORD) {
-      sessionStorage.setItem("authenticated", "true");
-      authenticated = "true";
-    } else {
-      alert("Contraseña incorrecta.");
-      checkAuth(); // Reintenta si falla
+  const PASSWORD = "TuContraseñaAqui"; // Pon la que tú quieras
+  
+  function checkAuth() {
+    let authenticated = sessionStorage.getItem("authenticated");
+    if (authenticated !== "true") {
+      let entry = prompt("Por favor, ingresa la contraseña de acceso:");
+      if (entry === PASSWORD) {
+        sessionStorage.setItem("authenticated", "true");
+      } else {
+        alert("Contraseña incorrecta.");
+        checkAuth(); // Reintenta si falla
+      }
     }
   }
-}
   
   checkAuth();
 </script>
