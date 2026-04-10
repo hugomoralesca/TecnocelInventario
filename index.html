@@ -1,56 +1,55 @@
-<!DOCTYPE html><script>
-  const PASSWORD = "YourSecretFamilyPassword123"; // Change this!
+<!DOCTYPE html>
+<script>
+  // Recuerda cambiar esta contraseña en la siguiente línea
+  const PASSWORD = "FamiliaMorales"; 
   let authenticated = sessionStorage.getItem("authenticated");
 
   while (authenticated !== "true") {
-    let entry = prompt("Please enter the access password:");
+    let entry = prompt("Por favor, ingresa la contraseña de acceso:");
     if (entry === PASSWORD) {
       sessionStorage.setItem("authenticated", "true");
       authenticated = "true";
     } else {
-      alert("Incorrect password.");
+      alert("Contraseña incorrecta.");
     }
   }
 </script>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StockSync — Inventory Manager</title>
+  <title>StockSync — Gestión de Inventario</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-<!-- LOGIN SCREEN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">
       <span class="logo-mark">S</span>
       <span class="logo-text">StockSync</span>
     </div>
-    <p class="login-sub">Phone store inventory management</p>
+    <p class="login-sub">Gestión de inventario y ventas</p>
     <div class="login-roles">
       <button class="role-card" onclick="login('owner')">
         <span class="role-icon">🏪</span>
-        <span class="role-name">Owner / Staff</span>
-        <span class="role-desc">Manage inventory & sales</span>
+        <span class="role-name">Dueño / Personal</span>
+        <span class="role-desc">Gestionar inventario y ventas</span>
       </button>
       <button class="role-card" onclick="login('supplier')">
         <span class="role-icon">🚚</span>
-        <span class="role-name">Supplier</span>
-        <span class="role-desc">View alerts & orders</span>
+        <span class="role-name">Proveedor</span>
+        <span class="role-desc">Ver alertas y pedidos</span>
       </button>
     </div>
-    <p class="login-note">Select your role to continue</p>
+    <p class="login-note">Selecciona tu rol para continuar</p>
   </div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app" class="hidden">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <div class="sidebar-logo">
@@ -62,55 +61,54 @@
 
     <nav class="sidebar-nav" id="owner-nav">
       <button class="nav-item active" data-tab="dashboard" onclick="showTab('dashboard')">
-        <span class="nav-icon">◉</span> Dashboard
+        <span class="nav-icon">◉</span> Panel Principal
       </button>
       <button class="nav-item" data-tab="inventory" onclick="showTab('inventory')">
-        <span class="nav-icon">▦</span> Inventory
+        <span class="nav-icon">▦</span> Inventario
       </button>
       <button class="nav-item" data-tab="sales" onclick="showTab('sales')">
-        <span class="nav-icon">↗</span> Sales history
+        <span class="nav-icon">↗</span> Historial de Ventas
       </button>
       <button class="nav-item" data-tab="orders" onclick="showTab('orders')">
-        <span class="nav-icon">⊡</span> Order tracking
+        <span class="nav-icon">⊡</span> Seguimiento de Pedidos
       </button>
       <button class="nav-item" data-tab="chat" onclick="showTab('chat')">
-        <span class="nav-icon">◎</span> Supplier chat
+        <span class="nav-icon">◎</span> Chat con Proveedor
         <span class="unread-pill" id="unread-count" style="display:none"></span>
       </button>
     </nav>
 
     <nav class="sidebar-nav hidden" id="supplier-nav">
       <button class="nav-item active" data-tab="supplier-stock" onclick="showTab('supplier-stock')">
-        <span class="nav-icon">◉</span> Stock alerts
+        <span class="nav-icon">◉</span> Alertas de Stock
       </button>
       <button class="nav-item" data-tab="supplier-orders" onclick="showTab('supplier-orders')">
-        <span class="nav-icon">⊡</span> Orders to fulfill
+        <span class="nav-icon">⊡</span> Pedidos por Surtir
       </button>
       <button class="nav-item" data-tab="chat" onclick="showTab('chat')">
-        <span class="nav-icon">◎</span> Chat with store
+        <span class="nav-icon">◎</span> Chat con la Tienda
         <span class="unread-pill" id="unread-count-s" style="display:none"></span>
       </button>
     </nav>
 
     <div class="sidebar-footer">
       <button class="export-btn" onclick="exportXLSX()" id="export-btn">
-        <span>↓</span> Export to Excel
+        <span>↓</span> Exportar a Excel
       </button>
       <button class="signout-btn" onclick="logout()">
-        Sign out
+        Cerrar sesión
       </button>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <div class="main">
     <header class="topbar">
       <div class="topbar-left">
         <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-        <h1 class="page-title" id="page-title">Dashboard</h1>
+        <h1 class="page-title" id="page-title">Panel Principal</h1>
       </div>
       <div class="topbar-right">
-        <div class="user-chip" id="user-chip">Owner</div>
+        <div class="user-chip" id="user-chip">Dueño</div>
       </div>
     </header>
     <div class="page-content" id="page-content"></div>
