@@ -48,7 +48,7 @@ function login(role) {
   document.getElementById('owner-nav').classList.toggle('hidden', role !== 'owner');
   document.getElementById('supplier-nav').classList.toggle('hidden', role !== 'supplier');
   document.getElementById('export-btn').classList.toggle('hidden', role !== 'owner');
-  currentTab = role === 'owner' ? 'dashboard' : 'supplier-stock';
+  currentTab = role === 'owner' ? 'dashboard': 'supplier-stock';
   render();
 }
 
