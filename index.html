@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <script>
-  // Cambia la contraseña entre las comillas en la línea de abajo
   const PASSWORD = "FamiliaMorales"; 
+function checkAuth() {
   let authenticated = sessionStorage.getItem("authenticated");
-
-  while (authenticated !== "true") {
+  if (authenticated !== "true") {
     let entry = prompt("Por favor, ingresa la contraseña de acceso:");
     if (entry === PASSWORD) {
       sessionStorage.setItem("authenticated", "true");
       authenticated = "true";
     } else {
       alert("Contraseña incorrecta.");
+      checkAuth(); // Reintenta si falla
     }
   }
 </script>
